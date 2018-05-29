@@ -64,7 +64,7 @@ A complete example application is included.  Look at the index.js file for examp
   DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
 
 ```
-### DialogSetup
+### DialogSetup 
 If you want to capture the physical button and you're not already doing so for any physical button, you can call the DialogSetup function to implement the listen event and disable the default behavior to exit.  That call would look something like this:
 ```javascript
 
