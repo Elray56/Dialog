@@ -8,63 +8,73 @@ I was a little frustrated at the lack of a simple popup box.  I found the design
 
 ## Features
 
--Easy to add to an existing application.
--Includes the option to display Yes/No/Cancel buttons as well as OK/Cancel with the Cancel button as an option.
--Includes a complete example application.
--Includes an option to capture the physical button press (especially useful to capture the back button).
--Uses callbacks to implement the actions for each button.
--Simple to use.
--Examples
-	--Display an OK popup: DialogShow("Data saved","OK");
-	--Display a popup before exiting the app: DialogShow("Exit: Are you sure?","YN","N",function(){me.exit();});
+- Easy to add to an existing application.
+- Includes the option to display Yes/No/Cancel buttons as well as OK/Cancel with the Cancel button as an option.
+- Includes a complete example application.
+- Includes an option to capture the physical button press (especially useful to capture the back button).
+- Uses callbacks to implement the actions for each button.
+- Simple to use.
+- Examples
+  - Display an OK popup: 
+	```javascript 
+		DialogShow("Data saved","OK"); 
+	```
+  - Display a popup before exiting the app: 
+	```javascript 
+		DialogShow("Exit: Are you sure?","YN","N",function(){me.exit();});
+	```
 
-##Process
+## Process
 Show Dialog -> Capture Answer -> Hide Dialog -> Execute function (if one)
 
 Each button can have a function associated with it, a callback.  When the button is pressed, the function is executed.  If the desired action is to simply end the dialog, pass in an empty string for the function.  That will simply end the dialog.
 
-##Installation
+## Installation
 
--Download and unzip the project.
--Copy Dialog.js into your app folder.
--Copy the Dialog.gui into your resources folder.
--Add a link in index.gui for Dialog.gui:
-    <svg>
+1. Download and unzip the project.
+1. Copy Dialog.js into your app folder.
+1. Copy the Dialog.gui into your resources folder.
+1. Add a link in index.gui for Dialog.gui:
+```    <svg>
       .....your page.....
           <link  rel="import" href="Dialog.gui" />
         </svg>
-    
--Add the import below into your index.js file:
+ ```   
+1. Add the import below into your index.js file:
+```
        import * as DIA from "./Dialog";
-    
--If an option is to exit, you may also need to add:
+```    
+1. If an option is to exit, you may also need to add:
+```
        import { me } from "appbit";
-    
--Add this import to your widgets.gui file:
+```    
+1. Add this import to your widgets.gui file:
+```
     <link rel="import" href="/mnt/sysassets/widgets/square_button_widget.gui" />  
+```
 
-
-##Using the Dialog
+## Using the Dialog
 A complete example application is included.  Look at the index.js file for examples.
 
---There are two functions that can be called:
+- There are two functions that can be called:
 
----DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key)
----DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
+  - DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key)
+  - DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
 
---If you want to capture the physical button and you're not already doing so for any button, you can call the DialogSetup function to implement the listen event and disable the default behavior to exit.  That call would look something like this:
+- If you want to capture the physical button and you're not already doing so for any button, you can call the DialogSetup function to implement the listen event and disable the default behavior to exit.  That call would look something like this:
    
    DialogSetup("\nExit: Are you sure?","YN","N",AnsYes,AnsNo,"","back");
 
 In this example, the dialog displays when the back button is pressed.  Yes and No buttons are displayed along with the question to exit.  The No button is highlighted.  The default action, in this case, to exit, is disabled automatically by the function.  
 
 
---You can also add code to call the Dialog without calling the setup function.  The setup function is ONLY called if you need to capture the physical key.  In your application you can simply add code like this to display an OK/Cancel dialog with a function to be executed when the user press OK:
+- You can also add code to call the Dialog without calling the setup function.  The setup function is ONLY called if you need to capture the physical key.  In your application you can simply add code like this to display an OK/Cancel dialog with a function to be executed when the user press OK:
 
 	DialogShow("\nData saved","OKC","",function(){me.exit();});
 
-`Examine the index.js file for examples.`
+**Examine the index.js file for examples**
 
+## Function Parameters
 Parameters for DialogSetup and DialogShow are identical except the Key parameter is dropped for the DialogShow method: 
          Question: Max about 50 characters. Max of 2 lines. 
                    Note: If the question is short you can push it down to the second line
@@ -84,7 +94,7 @@ Parameters for DialogSetup and DialogShow are identical except the Key parameter
                    The values are the same as the keys: back, up, down.
 
 
-
+## Default Actions
 There are some default actions within the dialog:
 (1) If DialogSetup is used to set a physical key, a second press of that physical key while the dialog is displayed, will end the dialog.  This was originally setup for the back button and doesn't make as much sense if the up or down buttons are used but it can be commented out if needed.
 (2) The dialog types YN and OK become YNC and OKC, respectively, if the cancel function is supplied.  The reverse is not true, YNC and OKC types will always display the Cancel button whether a cancel method is defined or not.
