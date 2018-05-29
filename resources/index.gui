@@ -1,0 +1,9 @@
+<svg>
+      <textarea y="0" x="0" font-family="System-Regular" fill="white" 
+                font-size="35">
+Press the left button to begin a dialog session.
+        
+Watch the console log for each button press.
+    </textarea>
+   <link  rel="import" href="Dialog.gui" />
+</svg>

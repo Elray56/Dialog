@@ -1,0 +1,19 @@
+{
+  "fitbit": {
+    "appUUID": "ab0537b6-8caa-4d98-adcb-648af1368129",
+    "appType": "app",
+    "appDisplayName": "Dialog",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "meson",
+      "higgs"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Dialog"
+      }
+    }
+  }
+}

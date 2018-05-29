@@ -1,0 +1,49 @@
+Overview:
+I was frustrated by the lack of a dialog box within the SDK. 
+So I created one.  It combines the Alert popup box and Confirm
+Popup box from Javascript.  
+
+Process:
+Show Dialog -> Capture Answer -> Hide Dialog -> Execute function (if one)
+There are two types of dialogs: A Yes/No/Cancel dialog and an OK/Cancel dialog.
+The Yes/No/Cancel dialog can also be a Yes/No dialog.
+The OK/Cancel dialog can also be an OK dialog.
+
+How it works: Each button can have a function associated with it, a callback.  When
+the button is pressed, the function is executed.  If the desired action is to simply
+end the dialog, pass in an empty string for the function.  That will simply end the dialog.
+
+Instructions:
+    1) Copy Dialog.js into your app folder.
+    2) Copy the Dialog.gui into your resources folder.
+    3) Add a link in index.gui for Dialog.gui:
+    <svg>
+      .....your page.....
+    
+      <link  rel="import" href="Dialog.gui" />
+    
+    </svg>
+    
+    4) Add the import below into your index.js file:
+       
+       import * as DIA from "./Dialog";
+    
+    5) If an option is to exit, you may also need to add:
+       
+       import { me } from "appbit";
+    
+    6) Add this import to your widgets.gui file:
+    
+    <link rel="import" href="/mnt/sysassets/widgets/square_button_widget.gui" />  
+
+    7) Add code to your application to either call DialogSetup 
+       or DialogShow.  See the example index.js file for examples of both.
+
+There are some default actions within the dialog:
+(1) If DialogSetup is used to set a physical key, a second press of that physical key
+    while the dialog is displayed, will end the dialog.  This was originally setup for 
+    the back button and doesn't make as much sense if the up or down buttons are used but
+    it can be commented out if needed.
+(2) The dialog types YN and OK become YNC and OKC, respectively, if the cancel function is
+    supplied.  The reverse is not true, YNC and OKC types will always display the Cancel button 
+    whether a cancel method is defined or not.
