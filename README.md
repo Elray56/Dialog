@@ -35,20 +35,21 @@ Each button can have a function associated with it, a callback.  When the button
 1. Copy Dialog.js into your app folder.
 1. Copy the Dialog.gui into your resources folder.
 1. Add a link in index.gui for Dialog.gui:
-```    <svg>
+```    
+        <svg>
       .....your page.....
           <link  rel="import" href="Dialog.gui" />
         </svg>
  ```   
-1. Add the import below into your index.js file:
+5. Add the import below into your index.js file:
 ```
        import * as DIA from "./Dialog";
 ```    
-1. If an option is to exit, you may also need to add:
+6. If an option is to exit, you may also need to add:
 ```
        import { me } from "appbit";
 ```    
-1. Add this import to your widgets.gui file:
+7. Add this import to your widgets.gui file:
 ```
     <link rel="import" href="/mnt/sysassets/widgets/square_button_widget.gui" />  
 ```
@@ -57,25 +58,34 @@ Each button can have a function associated with it, a callback.  When the button
 A complete example application is included.  Look at the index.js file for examples.
 
 - There are two functions that can be called:
+```javascript
+  
+  DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key)
+  DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
 
-  - DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key)
-  - DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
+```
+### DialogSetup
+If you want to capture the physical button and you're not already doing so for any physical button, you can call the DialogSetup function to implement the listen event and disable the default behavior to exit.  That call would look something like this:
+```javascript
 
-- If you want to capture the physical button and you're not already doing so for any button, you can call the DialogSetup function to implement the listen event and disable the default behavior to exit.  That call would look something like this:
-   
-   DialogSetup("\nExit: Are you sure?","YN","N",AnsYes,AnsNo,"","back");
+   DIA.DialogSetup("\nExit: Are you sure?","YN","N",AnsYes,AnsNo,"","back");
 
+```
 In this example, the dialog displays when the back button is pressed.  Yes and No buttons are displayed along with the question to exit.  The No button is highlighted.  The default action, in this case, to exit, is disabled automatically by the function.  
 
+### DialogShow
+You can also add code to call the Dialog without calling the setup function.  The setup function is ONLY called if you need to capture the physical key.  In your application you can simply add code like this to display an OK/Cancel dialog with a function to be executed when the user press OK:
+```javascript
 
-- You can also add code to call the Dialog without calling the setup function.  The setup function is ONLY called if you need to capture the physical key.  In your application you can simply add code like this to display an OK/Cancel dialog with a function to be executed when the user press OK:
+	DIA.DialogShow("\nData saved","OKC","",function(){me.exit();});
 
-	DialogShow("\nData saved","OKC","",function(){me.exit();});
+```
 
 **Examine the index.js file for examples**
 
 ## Function Parameters
-Parameters for DialogSetup and DialogShow are identical except the Key parameter is dropped for the DialogShow method: 
+Parameters for DialogSetup and DialogShow are identical except the Key parameter is dropped for the DialogShow method:
+```
          Question: Max about 50 characters. Max of 2 lines. 
                    Note: If the question is short you can push it down to the second line
                    by starting it with \n.
@@ -93,10 +103,10 @@ Parameters for DialogSetup and DialogShow are identical except the Key parameter
                    file as an example to capture the back button and NOT exit automatically.
                    The values are the same as the keys: back, up, down.
 
-
+```
 ## Default Actions
 There are some default actions within the dialog:
-(1) If DialogSetup is used to set a physical key, a second press of that physical key while the dialog is displayed, will end the dialog.  This was originally setup for the back button and doesn't make as much sense if the up or down buttons are used but it can be commented out if needed.
-(2) The dialog types YN and OK become YNC and OKC, respectively, if the cancel function is supplied.  The reverse is not true, YNC and OKC types will always display the Cancel button whether a cancel method is defined or not.
+1. If DialogSetup is used to set a physical key, a second press of that physical key while the dialog is displayed, will end the dialog.  This was originally setup for the back button and doesn't make as much sense if the up or down buttons are used but it can be commented out if needed.
+1. The dialog types YN and OK become YNC and OKC, respectively, if the cancel function is supplied.  The reverse is not true, YNC and OKC types will always display the Cancel button whether a cancel method is defined or not.
 
  
