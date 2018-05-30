@@ -36,9 +36,11 @@ Each button can have a function associated with it, a callback.  When the button
 1. Copy the Dialog.gui into your resources folder.
 1. Add a link in index.gui for Dialog.gui:
 ```    
-        &lt;svg&gt;
+        <svg>
       .....your page.....
-          <link  rel="import" href="Dialog.gui" />
+
+          **<link  rel="import" href="Dialog.gui" />**
+
         </svg>
  ```   
 5. Add the import below into your index.js file:
@@ -60,8 +62,8 @@ A complete example application is included.  Look at the index.js file for examp
 - There are two functions that can be called:
 ```javascript
   
-  DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key)
-  DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function)
+  DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key);
+  DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function);
 
 ```
 ### DialogSetup 
@@ -85,6 +87,12 @@ You can also add code to call the Dialog without calling the setup function.  Th
 
 ## Function Parameters
 Parameters for DialogSetup and DialogShow are identical except the Key parameter is dropped for the DialogShow method:
+```javascript
+
+  DIA.DialogSetup(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function,Physical Key);
+  DIA.DialogShow(Question,Type,DefaultButton,Yes/OK Function,No function, Cancel Function);
+
+```
 ```
          Question: Max about 50 characters. Max of 2 lines. 
                    Note: If the question is short you can push it down to the second line
@@ -106,7 +114,7 @@ Parameters for DialogSetup and DialogShow are identical except the Key parameter
 ```
 ## Default Actions
 There are some default actions within the dialog:
-1. If DialogSetup is used to set a physical key, a second press of that physical key while the dialog is displayed, will end the dialog.  This was originally setup for the back button and doesn't make as much sense if the up or down buttons are used but it can be commented out if needed.
+1. If DialogSetup is used to set a physical key, a second press of that physical key while the dialog is displayed, will end the dialog.  This was originally setup for the back button and doesn't make as much sense if the up or down buttons are used but it can be commented out if not needed.
 1. The dialog types YN and OK become YNC and OKC, respectively, if the cancel function is supplied.  The reverse is not true, YNC and OKC types will always display the Cancel button whether a cancel method is defined or not.
 
  
