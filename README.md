@@ -39,7 +39,7 @@ Each button can have a function associated with it, a callback.  When the button
         <svg>
       .....your page.....
 
-          **<link  rel="import" href="Dialog.gui" />**
+          <link  rel="import" href="Dialog.gui" />
 
         </svg>
  ```   
