@@ -36,7 +36,7 @@ Each button can have a function associated with it, a callback.  When the button
 1. Copy the Dialog.gui into your resources folder.
 1. Add a link in index.gui for Dialog.gui:
 ```    
-        <svg>
+        &lt;svg&gt;
       .....your page.....
           <link  rel="import" href="Dialog.gui" />
         </svg>
