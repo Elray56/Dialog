@@ -13,10 +13,10 @@
           <use id="DIA_btnNo" x="$" href="#square-button-toggle" value="1" fill="fb-red">
             <set href="#text" attributeName="text-buffer" to="No" />
           </use>
-          <use id="DIA_btnOK" href="#square-button" y="$" fill="fb-green">
+          <use id="DIA_btnOK" href="#square-button-positive" y="$">
             <set href="#text" attributeName="text-buffer" to="OK"/>
           </use>
-          <use id="DIA_btnCancel" href="#square-button" y="$" fill="fb-slate">
+          <use id="DIA_btnCancel" href="#square-button-neutral" y="$">
             <set href="#text" attributeName="text-buffer" to="Cancel" />
           </use>
       </svg>
