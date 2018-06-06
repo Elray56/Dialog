@@ -1,5 +1,9 @@
 # Dialog Popup
 
+*********  I'm making a change to the callback functions to use one callback rather than three  
+*********    I expect to put that out later today 6/6/18
+
+
 A "module" to easily display a popup box on the FitBit Ionic watch.  Will probably work on the Versa but I have not tested it on that model.
 
 ## Overview
